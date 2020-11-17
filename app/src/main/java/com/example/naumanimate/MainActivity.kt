@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.naumanimate.databinding.ActivityMainBinding
+import com.example.naumanimate.ui.SettingsFragment
 import com.example.naumanimate.ui.TheoryFragment
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
@@ -78,7 +79,11 @@ initFunc()
                     position: Int,
                     drawerItem: IDrawerItem<*>
                 ): Boolean {
-                    Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_SHORT).show()
+                    when (position){
+                      5 -> supportFragmentManager.beginTransaction()
+                          .addToBackStack(null)
+                            .replace(R.id.dataContainer,SettingsFragment()).commit()
+                    }
                    return false
                 }
 
