@@ -9,4 +9,6 @@
     <string name="settings_label_phone_number">Нажмите, чтобы изменить номер телефона</string>
     <string name="settings_default_login">almirnaumov</string>
     <string name="settings_label_login">Имя пользователя</string>
+    <string name="settings_btn_change_name">Изменить имя</string>
+    <string name="settings_menu_exit">Выход</string>
 </resources>
