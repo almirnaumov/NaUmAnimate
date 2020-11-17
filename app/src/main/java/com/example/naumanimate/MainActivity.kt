@@ -48,7 +48,23 @@ initFunc()
                     .withIconTintingEnabled(true)
                     .withName("Теория")
                     .withSelectable(false)
-
+                    .withIcon(R.drawable.ic_theory),
+                PrimaryDrawerItem().withIdentifier(101)
+                    .withIconTintingEnabled(true)
+                    .withName("Диагностика")
+                    .withSelectable(false)
+                    .withIcon(R.drawable.ic_practice),
+                PrimaryDrawerItem(),
+                        PrimaryDrawerItem().withIdentifier(102)
+                    .withIconTintingEnabled(true)
+                    .withName("О приложении")
+                    .withSelectable(false)
+                    .withIcon(R.drawable.ic_developer_project),
+                PrimaryDrawerItem().withIdentifier(104)
+                    .withIconTintingEnabled(true)
+                    .withName("Настройки")
+                    .withSelectable(false)
+                    .withIcon(R.drawable.ic_customization)
             ).build()
     }
 
