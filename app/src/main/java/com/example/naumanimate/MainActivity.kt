@@ -2,14 +2,18 @@ package com.example.naumanimate
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.naumanimate.databinding.ActivityMainBinding
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
+import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,18 +58,28 @@ initFunc()
                     .withName("Диагностика")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_practice),
-                PrimaryDrawerItem(),
+                DividerDrawerItem(),
                         PrimaryDrawerItem().withIdentifier(102)
                     .withIconTintingEnabled(true)
                     .withName("О приложении")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_developer_project),
-                PrimaryDrawerItem().withIdentifier(104)
+                PrimaryDrawerItem().withIdentifier(103)
                     .withIconTintingEnabled(true)
                     .withName("Настройки")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_customization)
-            ).build()
+            ).withOnDrawerItemClickListener(object: Drawer.OnDrawerItemClickListener{
+                override fun onItemClick(
+                    view: View?,
+                    position: Int,
+                    drawerItem: IDrawerItem<*>
+                ): Boolean {
+                    Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_SHORT).show()
+                   return false
+                }
+
+            }).build()
     }
 
     private fun createHeader() {
