@@ -2,26 +2,15 @@ package com.example.naumanimate
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.naumanimate.databinding.ActivityMainBinding
-import com.example.naumanimate.ui.SettingsFragment
-import com.example.naumanimate.ui.TheoryFragment
-import com.mikepenz.materialdrawer.AccountHeader
-import com.mikepenz.materialdrawer.AccountHeaderBuilder
-import com.mikepenz.materialdrawer.Drawer
-import com.mikepenz.materialdrawer.DrawerBuilder
-import com.mikepenz.materialdrawer.model.DividerDrawerItem
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
+import com.example.naumanimate.ui.fragments.TheoryFragment
+import com.example.naumanimate.ui.objects.AppDrawer
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainBinding: ActivityMainBinding
-    private lateinit var mainDrawer: Drawer
-    private lateinit var mainHeader: AccountHeader
+private lateinit var  mainAppDrawer:AppDrawer
     private lateinit var mainToolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,72 +27,18 @@ initFunc()
 
     private fun initFunc() {
         setSupportActionBar(mainToolbar)
+        mainAppDrawer.create()
         supportFragmentManager.beginTransaction()
-            .replace(R.id.dataContainer,TheoryFragment()).commit()
-        createHeader()
-        createDrawer()
-    }
-
-    private fun createDrawer() {
-        mainDrawer=DrawerBuilder()
-            .withActivity(this)
-            .withToolbar(mainToolbar)
-            .withActionBarDrawerToggle(true)
-            .withSelectedItem(-1)
-            .withAccountHeader(mainHeader)
-            .addDrawerItems(
-                PrimaryDrawerItem().withIdentifier(100)
-                    .withIconTintingEnabled(true)
-                    .withName("Теория")
-                    .withSelectable(false)
-                    .withIcon(R.drawable.ic_theory),
-                PrimaryDrawerItem().withIdentifier(101)
-                    .withIconTintingEnabled(true)
-                    .withName("Диагностика")
-                    .withSelectable(false)
-                    .withIcon(R.drawable.ic_practice),
-                DividerDrawerItem(),
-                        PrimaryDrawerItem().withIdentifier(102)
-                    .withIconTintingEnabled(true)
-                    .withName("О приложении")
-                    .withSelectable(false)
-                    .withIcon(R.drawable.ic_developer_project),
-                PrimaryDrawerItem().withIdentifier(103)
-                    .withIconTintingEnabled(true)
-                    .withName("Настройки")
-                    .withSelectable(false)
-                    .withIcon(R.drawable.ic_customization)
-            ).withOnDrawerItemClickListener(object: Drawer.OnDrawerItemClickListener{
-                override fun onItemClick(
-                    view: View?,
-                    position: Int,
-                    drawerItem: IDrawerItem<*>
-                ): Boolean {
-                    when (position){
-                      5 -> supportFragmentManager.beginTransaction()
-                          .addToBackStack(null)
-                            .replace(R.id.dataContainer,SettingsFragment()).commit()
-                    }
-                   return false
-                }
-
-            }).build()
-    }
-
-    private fun createHeader() {
-        mainHeader= AccountHeaderBuilder()
-            .withActivity(this)
-            .withHeaderBackground(R.drawable.header)
-            .addProfiles(
-                ProfileDrawerItem().withName("Almir Naumov")
-                    .withEmail("+79997420920")
-            ).build()
-
+            .replace(R.id.dataContainer,
+                TheoryFragment()
+            ).commit()
 
     }
+
+
 
     private fun initFields() {
         mainToolbar=mainBinding.mainToolbar
-
+        mainAppDrawer=AppDrawer(this,mainToolbar)
     }
 }

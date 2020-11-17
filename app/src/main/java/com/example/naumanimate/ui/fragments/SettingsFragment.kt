@@ -1,4 +1,4 @@
-package com.example.naumanimate.ui
+package com.example.naumanimate.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,17 +10,9 @@ import com.example.naumanimate.databinding.FragmentSettingsBinding
 import com.example.naumanimate.databinding.FragmentTheoryBinding
 
 
-class SettingsFragment : Fragment() {
+class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
-    private lateinit var mainBinding: FragmentSettingsBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        mainBinding = FragmentSettingsBinding.inflate(layoutInflater)
-        return mainBinding.root
-    }
 
     override fun onResume() {
         super.onResume()
