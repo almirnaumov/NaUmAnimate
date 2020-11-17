@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.naumanimate.databinding.ActivityMainBinding
+import com.example.naumanimate.ui.TheoryFragment
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -36,6 +37,8 @@ initFunc()
 
     private fun initFunc() {
         setSupportActionBar(mainToolbar)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.dataContainer,TheoryFragment()).commit()
         createHeader()
         createDrawer()
     }
